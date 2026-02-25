@@ -51,16 +51,8 @@
       <a-entity
         id="hand-right"
         hand-controls="hand: right"
-        laser-controls="hand: right"
-        raycaster="far: 4; objects: [clickable]; showLine: true;"
         position="0 1.5 0"
-        physx-grab
-      >
-        <a-sphere id="hand-right-collider"
-          radius="0.02"
-          visible="false"
-          physx-body="type: kinematic; emitCollisionEvents: true">
-        </a-sphere>
+        obb-collider>
       </a-entity>
 
   </a-entity>

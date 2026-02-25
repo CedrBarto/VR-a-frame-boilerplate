@@ -24,11 +24,9 @@ AFRAME.registerComponent('collider-two-hands', {
         if (!isHand) return;
 
         this.counterHands++;
-        console.log('[collider-two-hands] mains en contact:', this.counterHands);
 
         if (this.counterHands >= 2) {
             lawnmowerActivated.value = true;
-            console.log('[collider-two-hands] Tondeuse ACTIVÉE (2 mains)');
         } else {
             lawnmowerActivated.value = false;
         }
@@ -45,7 +43,6 @@ AFRAME.registerComponent('collider-two-hands', {
 
         this.counterHands = Math.max(0, this.counterHands - 1);
         lawnmowerActivated.value = false;
-        console.log('[collider-two-hands] main partie, mains restantes:', this.counterHands);
     },
 
     remove: function () {
