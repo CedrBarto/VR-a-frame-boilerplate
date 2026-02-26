@@ -28,15 +28,13 @@ AFRAME.registerComponent('lawnmower-drive', {
         this._passIndex     = 0;
         this._done          = false;
 
-        // 5 passages couvrant la zone 3x3 (X ∈ [-1.5, 1.5], Z ∈ [-2.5, 0.5])
-        // rotY=0   → avance en +Z  (rotation actuelle du modèle)
-        // rotY=180 → avance en -Z
+        // 3 passages correspondant au plane width:2 height:2.2 centré en (-0.66, -1.08)
+        // X ∈ [-1.66, 0.34]  →  3 bandes de ~0.67m  →  x = -1.33 / -0.66 / 0.0
+        // Z ∈ [-2.18, 0.02]  →  marge d'approche à -2.4
         this._passes = [
-            { x: -1.1, zStart: -2.5, zEnd:  0.5, rotY:   0 },
-            { x: -0.5, zStart:  0.5, zEnd: -2.5, rotY: 180 },
-            { x:  0.1, zStart: -2.5, zEnd:  0.5, rotY:   0 },
-            { x:  0.7, zStart:  0.5, zEnd: -2.5, rotY: 180 },
-            { x:  1.3, zStart: -2.5, zEnd:  0.5, rotY:   0 },
+            { x: -1.33, zStart: -2.4, zEnd:  0.1, rotY:   0 },
+            { x: -0.66, zStart:  0.1, zEnd: -2.4, rotY: 180 },
+            { x:  0.0,  zStart: -2.4, zEnd:  0.1, rotY:   0 },
         ];
     },
 

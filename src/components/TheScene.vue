@@ -30,26 +30,15 @@
   >
 
    <a-assets @loaded="allAssetsLoaded = true"> 
-        <img id="sky-texture" :src="`assets/background/grasslands_sunset.jpg`"/>
       <a-asset-item id="lawnmower" :src="`assets/Model/hello_neighbor_2_alpha_2_lawnmower.glb`"></a-asset-item>
       <a-asset-item id="house" :src="`assets/Model/low_poly_house_3.glb`"></a-asset-item>
+      </a-assets>
 
-      </a-assets> 
-
-    <!-- Sol simple de référence -->
-    <!-- <a-plane
-      data-role="nav-mesh"
-      color="darkgreen"
-      width="4"
-      height="4"
-      rotation="-90 0 0"
-      position="0 0.1 -1">
-    </a-plane> -->
 
     <template v-if="allAssetsLoaded">
       <TheMainRoom :scale="scale" />
       <Ground />
-      <a-sky :src="`#sky-texture`"></a-sky>
+      <a-sky src="assets/background/grasslands_sunset.jpg" position="0 10 0"></a-sky>
 
       <!-- Maison -->
       <a-entity
@@ -59,10 +48,36 @@
         rotation="0 0 0">
       </a-entity>
 
+      <a-gltf-model
+        src="assets/Model/low_poly_stylized_rustic_wooden_chair_minimal.glb"
+        position="2 0.65 -3.5"
+        scale=" 0.03 0.03 0.03"
+        rotation="0 -115 0">
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="assets/Model/low_poly_big_forest_tree.glb"
+        position="6 0.20 -3"
+        scale=" 0.6 0.6 0.6"
+        rotation="0 -115 0">
+      </a-gltf-model>
+      <a-gltf-model
+        src="assets/Model/low_poly_big_forest_tree.glb"
+        position="-6 0.20 -6"
+        scale=" 0.6 0.6 0.6"
+        rotation="0 0 0">
+      </a-gltf-model>
+      <a-gltf-model
+        src="assets/Model/low_poly_big_forest_tree.glb"
+        position="-1 0.20 3.5"
+        scale=" 0.6 0.6 0.6"
+        rotation="0 90 0">
+      </a-gltf-model>
+
       <!-- Lawnmower avec hitbox --> <!-- position="0 0.1 0.2" -->
       <a-entity 
         gltf-model="#lawnmower"
-        position="-1.1 0.1 -2.6"    
+        position="-1.28 0.1 -2.8"    
         scale="0.8 0.8 0.8"
         rotation="0 0 0"
         lawnmower-drive="speed: 1; mowRadius: 0.45; mowedScale: 0.2"
@@ -91,6 +106,40 @@
           collider-two-hands>
         </a-box>
       </a-entity>
+
+      <!-- Barrières -->
+      <!-- Côté avant (Z proche) -->
+      <a-gltf-model
+        src="assets/Model/wood_fence_low_poly.glb"
+        duplicate="rows: 7.9; cols: 1; gap: 1.15; gltf: assets/Model/wood_fence_low_poly.glb"
+        position="0.5 0.16 2.4"
+        scale="1 1 1"
+        rotation="0 90 0">
+      </a-gltf-model>
+      <!-- Côté arrière (Z loin) -->
+      <a-gltf-model
+        src="assets/Model/wood_fence_low_poly.glb"
+        duplicate="rows: 7.9; cols: 1; gap: 1.1; gltf: assets/Model/wood_fence_low_poly.glb"
+        position="0.3 0.16 -9.5"
+        scale="1 1 1"
+        rotation="0 90 0">
+      </a-gltf-model>
+      <!-- Côté gauche (X négatif) -->
+      <a-gltf-model
+        src="assets/Model/wood_fence_low_poly.glb"
+        duplicate="rows: 10; cols: 1; gap: 0.06; gltf: assets/Model/wood_fence_low_poly.glb"
+        position="-4.2 0.16 -3.55"
+        scale="1 1 1"
+        rotation="0 0 0">
+      </a-gltf-model>
+      <!-- Côté droit (X positif) -->
+      <a-gltf-model
+        src="assets/Model/wood_fence_low_poly.glb"
+        duplicate="rows: 11; cols: 1; gap: 0.06; gltf: assets/Model/wood_fence_low_poly.glb"
+        position="4.2 0.16 -4"
+        scale="1 1 1"
+        rotation="0 0 0">
+      </a-gltf-model>
 
       <a-entity light="type: ambient; color: #fff; intensity: 1"></a-entity>
       <a-entity light="type: directional; intensity: 1" position="0 5 0"></a-entity>

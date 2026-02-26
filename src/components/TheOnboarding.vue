@@ -20,6 +20,7 @@
   <div id="onboarding" v-if="showOnboarding">
     <div>
       <h1>A-Frame + Vite + Vue Boilerplate</h1>
+      <h2>Le printemps est arrivé ! L'herbe du jardin a bien poussé.</h2>
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
@@ -42,9 +43,37 @@
         </section>
         <section>
           <h4>Source code</h4>
-          <blockquote><a href="https://github.com/Chabloz/a-frame-vite-vue-boilerplate">Github repo</a></blockquote>
+          <blockquote><a href="https://github.com/CedrBarto/VR-a-frame-boilerplate">Github repo</a></blockquote>
         </section>
         <dl>
+          <dt>
+            <i>Assets used</i>
+          </dt>
+          <dt>
+            <a href="https://polyhaven.com/a/grasslands_sunset" target="_blank">Background image</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/grass-4b800e07ea3543e3870ad5e53b39d825" target="_blank">Grass model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/hello-neighbor-2-alpha-2-lawnmower-d62e8dd938e54e448e7e0a66a1be9fea" target="_blank">Lawnmower model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-house-3-d2722c2e056a48ca8c922298b7a9e88b" target="_blank">House model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/wood-fence-low-poly-8adfbcb77b734574ba99fde5bd0df4b9" target="_blank">Wooden Fence model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-stylized-rustic-wooden-chair-minimal-a73ef3cf293d44178ba22b12392b88a3" target="_blank">Garden chair model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-big-forest-tree-52e14dfea3234fbdabe8023166ae99ec" target="_blank">Trees model</a>
+          </dt>
+
+          <br>
+          <br>
+
           <dt>
             <i>Included</i>
           </dt>
