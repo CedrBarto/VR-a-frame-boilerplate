@@ -74,6 +74,39 @@
         rotation="0 90 0">
       </a-gltf-model>
 
+      <a-gltf-model
+        src="assets/Model/low_poly_flowers.glb"
+        duplicate="rows: 2; cols: 1; gap: 50; gltf: assets/Model/low_poly_flowers.glb; instanceRotationY: 15"
+        position="2 0.20 0.2"
+        scale=" 0.006 0.006 0.006"
+        rotation="0 90 0">
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="assets/Model/low_poly_nature_pack.glb"
+        duplicate="rows: 3; cols: 3; gap: 13; gltf: assets/Model/low_poly_nature_pack.glb; instanceRotationY: 15"
+        position="0.6 0.20 -1.3"
+        scale=" 0.2 0.2 0.2"
+        rotation="0 90 0">
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="assets/Model/stylized_bush_low_poly.glb"
+        duplicate="rows: 1; cols: 3; gap: 9; gltf: assets/Model/stylized_bush_low_poly.glb; instanceRotationY: 15"
+        position="-3 0.20 -3"
+        scale=" 0.3 0.3 0.3"
+        rotation="0 90 0">
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="assets/Model/great_tit_bird_low_poly.glb"
+        position="-2.48 2.12 -3.68"
+        scale=" 1 1 1"
+        rotation="0 70 0">
+      </a-gltf-model>
+
+
+
       <!-- Lawnmower avec hitbox --> <!-- position="0 0.1 0.2" -->
       <a-entity 
         gltf-model="#lawnmower"
@@ -81,6 +114,7 @@
         scale="0.8 0.8 0.8"
         rotation="0 0 0"
         lawnmower-drive="speed: 1; mowRadius: 0.45; mowedScale: 0.2"
+        sound="src: url(assets/lawn-mower-02.mp3); loop: true; autoplay: false; volume: 1"
         visible="true">
         <!-- Hitbox visible en wireframe (ajuster width/height/depth selon le modèle) -->
         <a-box

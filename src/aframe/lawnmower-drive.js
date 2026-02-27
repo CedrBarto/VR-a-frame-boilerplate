@@ -27,6 +27,7 @@ AFRAME.registerComponent('lawnmower-drive', {
         this._grassEl       = null;
         this._passIndex     = 0;
         this._done          = false;
+        this._soundPlaying  = false;
 
         // 3 passages correspondant au plane width:2 height:2.2 centré en (-0.66, -1.08)
         // X ∈ [-1.66, 0.34]  →  3 bandes de ~0.67m  →  x = -1.33 / -0.66 / 0.0
@@ -41,6 +42,12 @@ AFRAME.registerComponent('lawnmower-drive', {
     tick: function (time, delta) {
         if (!lawnmowerActivated.value) return;
         if (this._done) return;
+
+        // Démarrer le son dès qu'on pousse la tondeuse
+        if (!this._soundPlaying) {
+            const sound = this.el.components.sound;
+            if (sound) { sound.playSound(); this._soundPlaying = true; }
+        }
 
         const dt = delta / 1000;
         this.el.object3D.getWorldDirection(this._forward);
@@ -60,6 +67,7 @@ AFRAME.registerComponent('lawnmower-drive', {
             if (this._passIndex >= this._passes.length) {
                 // Tous les passages terminés
                 this._done = true;
+                this._stopSound();
                 lawnmowerActivated.value = false;
                 return;
             }
@@ -73,12 +81,20 @@ AFRAME.registerComponent('lawnmower-drive', {
             // Orienter la tondeuse pour le nouveau sens
             this.el.object3D.rotation.y = THREE.MathUtils.degToRad(next.rotY);
 
-            // Désactiver pour que l'utilisateur reprenne la tondeuse
+            // Désactiver pour que l'utilisateur reprenne la tondeuse (le son continue)
             lawnmowerActivated.value = false;
             return;
         }
 
         this._mowGrass();
+    },
+
+    _stopSound: function () {
+        if (this._soundPlaying) {
+            const sound = this.el.components.sound;
+            if (sound) sound.stopSound();
+            this._soundPlaying = false;
+        }
     },
 
     _mowGrass: function () {

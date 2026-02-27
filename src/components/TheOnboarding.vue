@@ -20,7 +20,7 @@
   <div id="onboarding" v-if="showOnboarding">
     <div>
       <h1>A-Frame + Vite + Vue Boilerplate</h1>
-      <h2>Le printemps est arrivé ! L'herbe du jardin a bien poussé.</h2>
+      <h2>Le printemps est arrivé ! L'herbe du jardin a bien poussé, il est temps de la tondre.</h2>
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
@@ -69,6 +69,21 @@
           </dt>
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-big-forest-tree-52e14dfea3234fbdabe8023166ae99ec" target="_blank">Trees model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/great-tit-bird-low-poly-be290af723714f119afccc405df27dfe" target="_blank">Bird model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/stylized-bush-low-poly-29b0e816028b47c081c786819fbb91a0" target="_blank">Bush model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-nature-pack-3b0b5f3599f149288281d39c358e96d7" target="_blank">Nature Pack model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-flowers-857802babfd542e094e8ef2c396be360" target="_blank">Flowers model</a>
+          </dt>
+          <dt>
+            <a href="https://www.soundjay.com/lawn-mower-sound-effect.html" target="_blank">Lawnmower sound effect</a>
           </dt>
 
           <br>
