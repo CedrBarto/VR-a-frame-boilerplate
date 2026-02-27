@@ -28,6 +28,7 @@ AFRAME.registerComponent('lawnmower-drive', {
         this._passIndex     = 0;
         this._done          = false;
         this._soundPlaying  = false;
+        this._startTime     = null; // ms au premier push
 
         // 3 passages correspondant au plane width:2 height:2.2 centré en (-0.66, -1.08)
         // X ∈ [-1.66, 0.34]  →  3 bandes de ~0.67m  →  x = -1.33 / -0.66 / 0.0
@@ -49,6 +50,11 @@ AFRAME.registerComponent('lawnmower-drive', {
             if (sound) { sound.playSound(); this._soundPlaying = true; }
         }
 
+        // Démarrer le chrono au premier push
+        if (this._startTime === null) {
+            this._startTime = Date.now();
+        }
+
         const dt = delta / 1000;
         this.el.object3D.getWorldDirection(this._forward);
         this.el.object3D.position.addScaledVector(this._forward, this.data.speed * dt);
@@ -68,6 +74,7 @@ AFRAME.registerComponent('lawnmower-drive', {
                 // Tous les passages terminés
                 this._done = true;
                 this._stopSound();
+                this._showTime();
                 lawnmowerActivated.value = false;
                 return;
             }
@@ -87,6 +94,17 @@ AFRAME.registerComponent('lawnmower-drive', {
         }
 
         this._mowGrass();
+    },
+
+    _showTime: function () {
+        if (this._startTime === null) return;
+        const total = Date.now() - this._startTime;
+        const min = Math.floor(total / 60000);
+        const sec = Math.floor((total % 60000) / 1000);
+        const ms  = Math.floor((total % 1000) / 10);
+        const label = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}.${String(ms).padStart(2,'0')}`;
+        const sign = document.querySelector('#timer-sign');
+        if (sign) sign.setAttribute('text', `value: Le gazon a ete coupe en :\n${label}; align: center; color: #614435; width: 1; wrapCount: 12`);
     },
 
     _stopSound: function () {

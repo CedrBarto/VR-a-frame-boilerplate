@@ -105,6 +105,25 @@
         rotation="0 70 0">
       </a-gltf-model>
 
+      <a-gltf-model
+        src="assets/Model/wooden_sign_-_baked_low_poly.glb"
+        position="0 0.20 3.5"
+        scale=" 0.6 0.7 0.6"
+        rotation="0 180 0">
+      </a-gltf-model>
+      <!-- Texte du chrono affiché sur le panneau à la fin de la tonte -->
+      <a-text
+        id="timer-sign"
+        value=""
+        transparency="0.8"
+        align="center"
+        color=#614435
+        width="0.8"
+        wrap-count="12"
+        position="0 1.8 3.335"
+        rotation="0 180 0">
+      </a-text>
+
 
 
       <!-- Lawnmower avec hitbox --> <!-- position="0 0.1 0.2" -->
@@ -178,6 +197,9 @@
       <a-entity light="type: ambient; color: #fff; intensity: 1"></a-entity>
       <a-entity light="type: directional; intensity: 1" position="0 5 0"></a-entity>
     </template>
+
+    <!-- Ambiance oiseaux : non-positionnel, démarre dès le chargement, boucle en continu -->
+    <a-entity sound="src: url(assets/mixkit-morning-birds-2472.mp3); autoplay: true; loop: true; positional: false; volume: 0.5"></a-entity>
 
     <TheCameraRig />
 

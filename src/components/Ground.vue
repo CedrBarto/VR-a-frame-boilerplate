@@ -6,8 +6,8 @@ import '../aframe/duplicate.js';
     <a-entity>
         <a-plane 
             color=#075004
-            width="8.5" 
-            height="12" 
+            width="13" 
+            height="16" 
             rotation="-90 0 0" 
             position="0 0.15 -3.5"
             material="roughness: 0.8">
