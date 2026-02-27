@@ -83,6 +83,9 @@
             <a href="https://sketchfab.com/3d-models/low-poly-flowers-857802babfd542e094e8ef2c396be360" target="_blank">Flowers model</a>
           </dt>
           <dt>
+            <a href="https://sketchfab.com/3d-models/wooden-sign-baked-low-poly-0d2fbde1a0a446a1b3bb808664a7e08a" target="_blank">Wooden Sign model</a>
+          </dt>
+          <dt>
             <a href="https://www.soundjay.com/lawn-mower-sound-effect.html" target="_blank">Lawnmower sound effect</a>
           </dt>
           <dt>
