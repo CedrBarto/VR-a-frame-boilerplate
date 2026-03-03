@@ -19,6 +19,41 @@ AFRAME.registerComponent('teleport-camera-rig', {
   },
 
   onEvent: function () {
+    const self = this;
+    const fadeDuration = 1200;
+    const fader = document.querySelector('#vr-fader');
+    if (fader) {
+      // Fade to black
+      fader.removeAttribute('animation');
+      fader.setAttribute('animation',
+        'property: material.opacity; from: 0; to: 1; dur: ' + fadeDuration + '; easing: easeInQuad;');
+      setTimeout(function () {
+        self._doTeleport();
+        self._spawnBeerCan();
+        // Fade back to clear
+        fader.removeAttribute('animation');
+        fader.setAttribute('animation',
+          'property: material.opacity; from: 1; to: 0; dur: ' + fadeDuration + '; easing: easeOutQuad;');
+      }, fadeDuration + 50);
+    } else {
+      this._doTeleport();
+      this._spawnBeerCan();
+    }
+  },
+
+  _spawnBeerCan: function () {
+    // Son canette
+    var beerSound = document.querySelector('#beer-sound');
+    if (beerSound && beerSound.components && beerSound.components.sound) {
+      beerSound.components.sound.playSound();
+    }
+    // Canette pré-placée dans #hand-right (position/rotation définie dans TheCameraRig.vue)
+    // On la rend simplement visible — fonctionne en desktop et en VR
+    var existing = document.querySelector('#hand-right [data-beer]');
+    if (existing) existing.setAttribute('visible', 'true');
+  },
+
+  _doTeleport: function () {
     // Put the rig at the specified position
     this.data.rig.object3D.position.x = this.data.x;
     this.data.rig.object3D.position.y = this.data.y;

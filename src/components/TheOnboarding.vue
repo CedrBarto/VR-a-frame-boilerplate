@@ -86,10 +86,19 @@
             <a href="https://sketchfab.com/3d-models/wooden-sign-baked-low-poly-0d2fbde1a0a446a1b3bb808664a7e08a" target="_blank">Wooden Sign model</a>
           </dt>
           <dt>
+            <a href="https://sketchfab.com/3d-models/low-poly-round-wooden-table-c8a1fbf47b8c4a4baf78362d69ff091f" target="_blank">Wooden Table model</a>
+          </dt>
+          <dt>
+            <a href="https://sketchfab.com/3d-models/beer-can-b3257907af8248ab99cd27ff8c6a86d1" target="_blank">Beer can model</a>
+          </dt>
+          <dt>
             <a href="https://www.soundjay.com/lawn-mower-sound-effect.html" target="_blank">Lawnmower sound effect</a>
           </dt>
           <dt>
             <a href="https://mixkit.co/free-sound-effects/bird/" target="_blank">Birds sound effect</a>
+          </dt>
+          <dt>
+            <a href="https://pixabay.com/sound-effects/search/can%20beer%20opening/" target="_blank">Beer opening sound effect</a>
           </dt>
 
           <br>

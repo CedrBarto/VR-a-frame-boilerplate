@@ -28,7 +28,10 @@ AFRAME.registerComponent('lawnmower-drive', {
         this._passIndex     = 0;
         this._done          = false;
         this._soundPlaying  = false;
-        this._startTime     = null; // ms au premier push
+        this._soundReady    = false;
+        this._startTime     = null;
+
+        this.el.addEventListener('sound-loaded', () => { this._soundReady = true; });
 
         // 3 passages correspondant au plane width:2 height:2.2 centré en (-0.66, -1.08)
         // X ∈ [-1.66, 0.34]  →  3 bandes de ~0.67m  →  x = -1.33 / -0.66 / 0.0
@@ -44,8 +47,8 @@ AFRAME.registerComponent('lawnmower-drive', {
         if (!lawnmowerActivated.value) return;
         if (this._done) return;
 
-        // Démarrer le son dès qu'on pousse la tondeuse
-        if (!this._soundPlaying) {
+        // Démarrer le son dès qu'on pousse (uniquement si chargé)
+        if (!this._soundPlaying && this._soundReady) {
             const sound = this.el.components.sound;
             if (sound) { sound.playSound(); this._soundPlaying = true; }
         }
@@ -74,7 +77,10 @@ AFRAME.registerComponent('lawnmower-drive', {
                 // Tous les passages terminés
                 this._done = true;
                 this._stopSound();
-                this._showTime();
+                // Afficher le chrono après la téléportation (écran encore noir → révélé avec la scène)
+                setTimeout(() => this._showTime(), 1350);
+                this.el.emit('game-end');
+                document.dispatchEvent(new CustomEvent('game-end'));
                 lawnmowerActivated.value = false;
                 return;
             }
@@ -104,7 +110,7 @@ AFRAME.registerComponent('lawnmower-drive', {
         const ms  = Math.floor((total % 1000) / 10);
         const label = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}.${String(ms).padStart(2,'0')}`;
         const sign = document.querySelector('#timer-sign');
-        if (sign) sign.setAttribute('text', `value: Le gazon a ete coupe en :\n${label}; align: center; color: #614435; width: 1; wrapCount: 12`);
+        if (sign) sign.setAttribute('text', `value: Gazon coupe en :\n${label}\nla biere est meritee!; align: center; color: #d8cbc6; width: 0.9; wrapCount: 12`);
     },
 
     _stopSound: function () {

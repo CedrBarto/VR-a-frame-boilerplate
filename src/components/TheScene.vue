@@ -1,15 +1,14 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
 
   import TheCameraRig from './TheCameraRig.vue';
-  //import TheMainRoom from './TheMainRoom.vue';
   import Ground from './Ground.vue';
 
   import '../aframe/simple-grab.js';
   import '../aframe/outline.js';
   import '../aframe/collider-two-hands.js';
   import '../aframe/lawnmower-drive.js';
-
+  import '../aframe/teleport-camera-rig.js';
 
   defineProps({
     scale: Number,
@@ -17,6 +16,30 @@
   });
 
   const allAssetsLoaded = ref(false);
+
+  onMounted(() => {
+    // Sécurité : afficher la scène après 8s même si un asset échoue
+    setTimeout(() => { allAssetsLoaded.value = true; }, 8000);
+    // Ambiance : démarrer au premier geste utilisateur (politique AudioContext navigateur)
+    const startAmbient = () => {
+      const el = document.querySelector('#ambient-sound');
+      if (el) {
+        // Attendre que le composant sound soit prêt
+        const tryPlay = () => {
+          if (el.components && el.components.sound) {
+            el.components.sound.playSound();
+          } else {
+            setTimeout(tryPlay, 100);
+          }
+        };
+        tryPlay();
+      }
+    };
+    document.addEventListener('click', startAmbient, { once: true });
+    document.addEventListener('keydown', startAmbient, { once: true });
+    document.addEventListener('touchstart', startAmbient, { once: true });
+    // Canette + son gérés directement dans teleport-camera-rig.js (_spawnBeerCan)
+  });
 </script>
 
 <template>
@@ -29,14 +52,13 @@
     obb-collider="showColliders:false"
   >
 
-   <a-assets @loaded="allAssetsLoaded = true"> 
+   <a-assets timeout="8000" @loaded="allAssetsLoaded = true">
       <a-asset-item id="lawnmower" :src="`assets/Model/hello_neighbor_2_alpha_2_lawnmower.glb`"></a-asset-item>
       <a-asset-item id="house" :src="`assets/Model/low_poly_house_3.glb`"></a-asset-item>
       </a-assets>
 
 
     <template v-if="allAssetsLoaded">
-      <TheMainRoom :scale="scale" />
       <Ground />
       <a-sky src="assets/background/grasslands_sunset.jpg" position="0 10 0"></a-sky>
 
@@ -52,6 +74,13 @@
         src="assets/Model/low_poly_stylized_rustic_wooden_chair_minimal.glb"
         position="2 0.65 -3.5"
         scale=" 0.03 0.03 0.03"
+        rotation="0 -115 0">
+      </a-gltf-model>
+
+      <a-gltf-model
+        src="assets/Model/low_poly_round_wooden_table.glb"
+        position="1.2 0.40 -2"
+        scale=" 0.15 0.15 0.15"
         rotation="0 -115 0">
       </a-gltf-model>
 
@@ -106,6 +135,13 @@
       </a-gltf-model>
 
       <a-gltf-model
+        src="assets/Model/great_tit_bird_low_poly.glb"
+        position="0.5 2.09 3.45"
+        scale=" 1 1 1"
+        rotation="0 -100 0">
+      </a-gltf-model>
+
+      <a-gltf-model
         src="assets/Model/wooden_sign_-_baked_low_poly.glb"
         position="0 0.20 3.5"
         scale=" 0.6 0.7 0.6"
@@ -117,22 +153,23 @@
         value=""
         transparency="0.8"
         align="center"
-        color=#614435
-        width="0.8"
+        color=#d8cbc6
+        width="0.9"
         wrap-count="12"
-        position="0 1.8 3.335"
+        position="0 1.68 3.335"
         rotation="0 180 0">
       </a-text>
 
 
 
-      <!-- Lawnmower avec hitbox --> <!-- position="0 0.1 0.2" -->
+      <!-- Lawnmower avec hitbox --> <!-- position="-1.28 0.1 -2.8" -->
       <a-entity 
         gltf-model="#lawnmower"
         position="-1.28 0.1 -2.8"    
         scale="0.8 0.8 0.8"
         rotation="0 0 0"
         lawnmower-drive="speed: 1; mowRadius: 0.45; mowedScale: 0.2"
+        teleport-camera-rig="on: game-end; x: 1.5; y: 0; z: -2; rot: 150"
         sound="src: url(assets/lawn-mower-02.mp3); loop: true; autoplay: false; volume: 1"
         visible="true">
         <!-- Hitbox visible en wireframe (ajuster width/height/depth selon le modèle) -->
@@ -188,8 +225,8 @@
       <!-- Côté droit (X positif) -->
       <a-gltf-model
         src="assets/Model/wood_fence_low_poly.glb"
-        duplicate="rows: 11; cols: 1; gap: 0.06; gltf: assets/Model/wood_fence_low_poly.glb"
-        position="4.2 0.16 -4"
+        duplicate="rows: 10; cols: 1; gap: 0.06; gltf: assets/Model/wood_fence_low_poly.glb"
+        position="4.2 0.16 -3.50"
         scale="1 1 1"
         rotation="0 0 0">
       </a-gltf-model>
@@ -198,8 +235,10 @@
       <a-entity light="type: directional; intensity: 1" position="0 5 0"></a-entity>
     </template>
 
-    <!-- Ambiance oiseaux : non-positionnel, démarre dès le chargement, boucle en continu -->
-    <a-entity sound="src: url(assets/mixkit-morning-birds-2472.mp3); autoplay: true; loop: true; positional: false; volume: 0.5"></a-entity>
+    <!-- Ambiance oiseaux : démarre après le premier geste (politique navigateur) -->
+    <a-entity id="ambient-sound" sound="src: url(assets/mixkit-morning-birds-2472.mp3); loop: true; autoplay: false; positional: false; volume: 0.5"></a-entity>
+    <!-- Son canette de bière : joué une fois à la téléportation -->
+    <a-entity id="beer-sound" sound="src: url(assets/freesound_community-beer-can-open-and-drink-46695.mp3); loop: false; autoplay: false; positional: false; volume: 3"></a-entity>
 
     <TheCameraRig />
 
