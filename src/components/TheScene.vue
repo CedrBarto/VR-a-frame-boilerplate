@@ -48,7 +48,6 @@
     _fog="type: linear; color: #191970; near: 5; far: 50"
     outline
     simple-grab
-    stats
     obb-collider="showColliders:false"
   >
 

@@ -20,7 +20,7 @@
   <div id="onboarding" v-if="showOnboarding">
     <div>
       <h1>A-Frame + Vite + Vue Boilerplate</h1>
-      <h2>Le printemps est arrivé ! L'herbe du jardin a bien poussé, il est temps de la tondre.</h2>
+      <h2>Le printemps est arrivé ! L'herbe du jardin a bien poussé, il est désormais temps de la tondre.</h2>
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
@@ -52,45 +52,84 @@
           <dt>
             <a href="https://polyhaven.com/a/grasslands_sunset" target="_blank">Background image</a>
           </dt>
+          <dd>
+            by <a target="_blank">Dimitrios Savva and Jarod Guest</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/grass-4b800e07ea3543e3870ad5e53b39d825" target="_blank">Grass model</a>
           </dt>
+          <dd>
+            by <a target="_blank">MauroGonzalezA</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/hello-neighbor-2-alpha-2-lawnmower-d62e8dd938e54e448e7e0a66a1be9fea" target="_blank">Lawnmower model</a>
           </dt>
+          <dd>
+            by <a target="_blank">mathewgod60</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-house-3-d2722c2e056a48ca8c922298b7a9e88b" target="_blank">House model</a>
           </dt>
+          <dd>
+            by <a target="_blank">POLYSCAN</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/wood-fence-low-poly-8adfbcb77b734574ba99fde5bd0df4b9" target="_blank">Wooden Fence model</a>
           </dt>
+          <dd>
+            by <a target="_blank">VX-Designs</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-stylized-rustic-wooden-chair-minimal-a73ef3cf293d44178ba22b12392b88a3" target="_blank">Garden chair model</a>
           </dt>
+          <dd>
+            by <a target="_blank">Quickartflicks</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-big-forest-tree-52e14dfea3234fbdabe8023166ae99ec" target="_blank">Trees model</a>
           </dt>
+          <dd>
+            by <a target="_blank">Vacation</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/great-tit-bird-low-poly-be290af723714f119afccc405df27dfe" target="_blank">Bird model</a>
           </dt>
           <dt>
             <a href="https://sketchfab.com/3d-models/stylized-bush-low-poly-29b0e816028b47c081c786819fbb91a0" target="_blank">Bush model</a>
           </dt>
+          <dd>
+            by <a target="_blank">Gatyh Interactive</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-nature-pack-3b0b5f3599f149288281d39c358e96d7" target="_blank">Nature Pack model</a>
           </dt>
+          <dd>
+            by <a target="_blank">sjolle</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-flowers-857802babfd542e094e8ef2c396be360" target="_blank">Flowers model</a>
           </dt>
+          <dd>
+            by <a target="_blank">Anskar</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/wooden-sign-baked-low-poly-0d2fbde1a0a446a1b3bb808664a7e08a" target="_blank">Wooden Sign model</a>
           </dt>
+           <dd>
+            by <a target="_blank">JeffK</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/low-poly-round-wooden-table-c8a1fbf47b8c4a4baf78362d69ff091f" target="_blank">Wooden Table model</a>
           </dt>
+          <dd>
+            by <a target="_blank">dannyszeto</a>
+          </dd> 
           <dt>
             <a href="https://sketchfab.com/3d-models/beer-can-b3257907af8248ab99cd27ff8c6a86d1" target="_blank">Beer can model</a>
           </dt>
+          <dd>
+            by <a target="_blank">Arte Hexe</a>
+          </dd> 
           <dt>
             <a href="https://www.soundjay.com/lawn-mower-sound-effect.html" target="_blank">Lawnmower sound effect</a>
           </dt>
